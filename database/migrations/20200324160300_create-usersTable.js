@@ -1,3 +1,4 @@
+
 exports.up = function(knex) {
     return knex.schema
     .createTable("users", table => {
@@ -10,6 +11,9 @@ exports.up = function(knex) {
         .string("password")
         .unique()
         .notNullable();
+      table
+        .string("department", 128)
+        .notNullable()
     });
   };
   

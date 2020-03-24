@@ -1,14 +1,15 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const users = require("./users-model.js");
-const restricted = require("../auth/restricted-middleware");
+const Users = require('./users-model.js');
+const restricted = require('../auth/restricted-middleware.js');
 
-router.get("/", restricted, (req, res) => {
-  users
-    .find()
+router.get('/', restricted, (req, res) => {
+  Users.find()
     .then(users => {
+      // only if req.decodedToken.roles.includes('student')
       res.json(users);
     })
-    .catch(error => res.send(error));
+    .catch(err => res.send(err));
 });
+
 module.exports = router;
