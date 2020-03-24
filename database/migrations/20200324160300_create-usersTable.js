@@ -9,7 +9,6 @@ exports.up = function(knex) {
         .notNullable();
       table
         .string("password")
-        .unique()
         .notNullable();
       table
         .string("department", 128)

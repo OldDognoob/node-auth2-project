@@ -16,6 +16,7 @@ router.post("/register", (req, res) => {
       res.status(500).json(error);
     });
 });
+
 router.post("login", (req, res) => {
   const { username, password } = req.body;
   Users.findBy({ username })
@@ -24,10 +25,10 @@ router.post("login", (req, res) => {
         const payload = {
           sub: user.indexOf,
           username: user.username,
-          roles: ["sr.developer"]
+          department: ["recearch & destroy"]
         };
         const options = {
-          expiresIn: 120
+          expiresIn: 90
         };
         const token = jwt.sign(
           payload,
@@ -43,4 +44,5 @@ router.post("login", (req, res) => {
       res.status(500).json(error);
     });
 });
+
 module.exports = router;
