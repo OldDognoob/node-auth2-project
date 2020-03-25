@@ -9,7 +9,9 @@ router.get('/', restricted, (req, res) => {
       // only if req.decodedToken.roles.includes('student')
       res.json(users);
     })
-    .catch(err => res.send(err));
+    .catch(err => {
+      res.status(500).json({ message: "you shall not pass" });
+    });
 });
 
 

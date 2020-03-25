@@ -17,19 +17,22 @@ router.post("/register", (req, res) => {
     });
 });
 
-router.post("login", (req, res) => {
+router.post("/login", (req, res) => {
   const { username, password } = req.body;
-  Users.findBy({ username })
+  Users.findBy({ username }).first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
+          //1-decide a payload
         const payload = {
           sub: user.indexOf,
           username: user.username,
-          department: ["recearch & destroy"]
+          department: user.department
         };
+          // 2- decide config (like exp data)
         const options = {
-          expiresIn: 90
+          expiresIn: "90"
         };
+         // 3- build & sign the token
         const token = jwt.sign(
           payload,
           process.env.JWT_SECRET || "secret",

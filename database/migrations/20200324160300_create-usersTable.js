@@ -4,14 +4,14 @@ exports.up = function(knex) {
     .createTable("users", table => {
       table.increments();
       table
-        .string("username", 128)
+        .string("username", 20)
         .unique()
         .notNullable();
       table
         .string("password")
         .notNullable();
       table
-        .string("department", 128)
+        .string("department", 20)
         .notNullable()
     });
   };
